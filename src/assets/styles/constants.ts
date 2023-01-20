@@ -1,13 +1,13 @@
 export const constants = {
-  logoFontFamily: "Big Shoulders Inline Display",
+  logoFontFamily: "Nunito Sans",
   logoFontSize: "45px",
   logoLineHeight: "140%",
 
-  headingFontFamily: "Barlow",
+  headingFontFamily: "Nunito Sans",
   headingFontSize: "28px",
   headingLineHeight: "140%",
 
-  bodyFontFamily: "Barlow",
+  bodyFontFamily: "Nunito Sans",
   bodyFontSize: "14px",
   bodyLineHeight: "140%",
 };

@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
+import pattern from "assets/images/pattern.png";
 export const Home = styled.section`
   ${({ theme }) => css`
-    background-color: ${theme.colors.baseBg1};
+    background-image: url(${pattern});
     min-width: 100vw;
     min-height: 100vh;
     color: ${theme.colors.textColor};
@@ -57,17 +58,19 @@ export const HomeHeaderDetailsSearch = styled.div`
 export const HomeProductTitle = styled.h2`
   ${({ theme }) => css`
     margin: 0;
-    border-bottom: 1px solid ${theme.colors.baseLine};
+    border-bottom: 0.5px solid ${theme.colors.baseLine};
     ${theme.mixins.bodyStyle()};
     color: ${theme.colors.primaryColor};
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    font-size: x-large;
     b {
+      margin: 0 10px;
       position: relative;
       &::after {
         content: "";
         position: absolute;
         left: 0;
-        bottom: -13px;
+        bottom: -7px;
         width: 100%;
         height: 4px;
         background-color: ${theme.colors.primaryColor};
