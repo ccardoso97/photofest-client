@@ -6,12 +6,12 @@ export const colors = {
 
   shadowColor: "#191919",
 
-  baseBg1: "#252836",
-  baseBg2: "#1F1D2B",
+  baseBg1: "#ADADAD",
+  baseBg2: "#757A7D",
   baseForm: "#2D303E",
   baseLine: "#393C49",
 
-  textColor: "#191919",
+  textColor: "#264849",
   textLighter: "#E5E5E5",
   textLight: "#ABBBC2",
   textNeutral: "#889898",

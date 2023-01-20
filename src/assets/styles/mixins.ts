@@ -34,7 +34,7 @@ const buttonOutlineModifiers = {
 const buttonOutline = (color = colors.primaryColor, square = false) => css`
   height: 48px;
   background: transparent;
-  border-radius: 8px;
+  border-radius: 50px;
   padding: 14px;
   cursor: pointer;
   border: 1px solid ${color};
@@ -45,7 +45,7 @@ const buttonOutline = (color = colors.primaryColor, square = false) => css`
 const buttonFilled = (color = colors.primaryColor) => css`
   background: ${color};
   border: none;
-  border-radius: 8px;
+  border-radius: 50px;
   color: ${colors.textColor};
   display: flex;
   justify-content: center;
@@ -54,7 +54,7 @@ const buttonFilled = (color = colors.primaryColor) => css`
   cursor: pointer;
   ${bodyStyle()};
   font-weight: 600;
-  box-shadow: 0px 8px 24px 0px ${colors.shadowColor};
+  box-shadow: 0px 15px 24px 0px ${colors.shadowColor};
 `;
 
 const buttonIconModifiers = {
@@ -66,7 +66,7 @@ const buttonIconModifiers = {
 const buttonIcon = (active = false) => css`
   height: 56px;
   width: 56px;
-  border-radius: 8px;
+  border-radius: 50px;
   padding: 16px;
   border: none;
   cursor: pointer;
@@ -76,7 +76,7 @@ const buttonIcon = (active = false) => css`
 `;
 
 const buttonToggle = (active = false) => css`
-  border-radius: 8px;
+  border-radius: 50px;
   padding: 7px 12px;
   border: ${active ? "none" : "1px solid " + colors.baseLine};
   height: 35px;
@@ -87,7 +87,7 @@ const buttonToggle = (active = false) => css`
 
 const input = () => css`
   height: 48px;
-  border-radius: 8px;
+  border-radius: 50px;
   padding: 14px;
   background: ${colors.baseForm};
   border: 1px solid ${colors.baseLine};
