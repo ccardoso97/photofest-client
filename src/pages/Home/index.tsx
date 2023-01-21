@@ -35,7 +35,7 @@ const Home = () => {
         </header>
         <div>
           <S.HomeProductTitle>
-            <b>Produtos</b> <b>Contato</b>
+            <b>Produtos</b>
           </S.HomeProductTitle>
           <S.HomeProductList>
             <ProductItemList>

@@ -2,7 +2,10 @@ import styled, { css } from "styled-components";
 
 export const OrderDetails = styled.section`
   ${({ theme }) => css`
-    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
     justify-self: end;
     background: ${theme.colors.baseBg2};
     padding: 20px;
