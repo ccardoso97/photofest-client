@@ -1,8 +1,12 @@
 import { ReactComponent as Search } from "assets/icons/search.svg";
 import { DateTime } from "luxon";
 import * as S from "./style";
+
 import Menu from "components/Menu";
 import ProductItemList from "components/ProductItemList";
+import ProductItem from "components/ProductItem";
+import OrderDetails from "components/OrderDetails";
+
 import { RoutePath } from "types/routes";
 import { navigationItems } from "data/navigation";
 
@@ -34,11 +38,15 @@ const Home = () => {
             <b>Produtos</b> <b>Contato</b>
           </S.HomeProductTitle>
           <S.HomeProductList>
-            <ProductItemList></ProductItemList>
+            <ProductItemList>
+              <ProductItem />
+            </ProductItemList>
           </S.HomeProductList>
         </div>
       </S.HomeContent>
-      <aside></aside>
+      <aside>
+        <OrderDetails />
+      </aside>
     </S.Home>
   );
 };
