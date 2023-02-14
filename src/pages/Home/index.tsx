@@ -6,6 +6,8 @@ import Menu from "components/Menu";
 import ProductItemList from "components/ProductItemList";
 import ProductItem from "components/ProductItem";
 import OrderDetails from "components/OrderDetails";
+import Overlay from "components/Overlay";
+import CheckoutSection from "components/CheckoutSection";
 
 import { RoutePath } from "types/routes";
 import { navigationItems } from "data/navigation";
@@ -47,6 +49,9 @@ const Home = () => {
       <aside>
         <OrderDetails />
       </aside>
+      <Overlay>
+        <CheckoutSection />
+      </Overlay>
     </S.Home>
   );
 };
