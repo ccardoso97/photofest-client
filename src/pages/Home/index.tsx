@@ -1,17 +1,18 @@
-import { ReactComponent as Search } from "assets/icons/search.svg";
-import { DateTime } from "luxon";
-import * as S from "./style";
-
 import Menu from "components/Menu";
+import { DateTime } from "luxon";
+import { ReactComponent as Search } from "assets/icons/search.svg";
+import * as S from "./style";
+import { RoutePath } from "types/routes";
+import { navigationItems } from "data/navigation";
 import ProductItemList from "components/ProductItemList";
 import ProductItem from "components/ProductItem";
 import OrderDetails from "components/OrderDetails";
 import Overlay from "components/Overlay";
 import CheckoutSection from "components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
-
-import { RoutePath } from "types/routes";
-import { navigationItems } from "data/navigation";
+import { products } from "mocks/products";
+import { orders } from "mocks/order";
+import { ProductResponse } from "types/Product";
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
@@ -20,6 +21,7 @@ const Home = () => {
   });
   const navigate = useNavigate();
   const handleNavigation = (path: RoutePath) => navigate(path);
+  const handleSelection = (product: ProductResponse) => {};
 
   return (
     <S.Home>
@@ -33,34 +35,41 @@ const Home = () => {
         <header>
           <S.HomeHeaderDetails>
             <div>
-              <S.HomeHeaderDetailsLogo>PhotoFest</S.HomeHeaderDetailsLogo>
+              <S.HomeHeaderDetailsLogo>Pizza Fresh</S.HomeHeaderDetailsLogo>
               <S.HomeHeaderDetailsDate>
                 {dateDescription}
               </S.HomeHeaderDetailsDate>
             </div>
             <S.HomeHeaderDetailsSearch>
               <Search />
-              <input type="text" placeholder="Pesquise pelo nome" />
+              <input type="text" placeholder="Procure pelo sabor" />
             </S.HomeHeaderDetailsSearch>
           </S.HomeHeaderDetails>
         </header>
         <div>
           <S.HomeProductTitle>
-            <b>Produtos</b>
+            <b>Pizzas</b>
           </S.HomeProductTitle>
           <S.HomeProductList>
             <ProductItemList>
-              <ProductItem />
+              {Boolean(products.length) &&
+                products.map((product, index) => (
+                  <ProductItem
+                    product={product}
+                    key={`ProductItem-${index}`}
+                    onSelect={handleSelection}
+                  />
+                ))}
             </ProductItemList>
           </S.HomeProductList>
         </div>
       </S.HomeContent>
       <aside>
-        <OrderDetails />
+        <OrderDetails orders={orders} />
       </aside>
       {/* <Overlay>
-        <CheckoutSection />
-      </Overlay> */}
+                <CheckoutSection />
+            </Overlay> */}
     </S.Home>
   );
 };
