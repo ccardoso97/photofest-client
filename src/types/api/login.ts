@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export interface Login {
-  nickname: string;
+  userName: string ;
   password: string;
 }
 

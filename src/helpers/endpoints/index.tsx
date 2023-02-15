@@ -4,7 +4,7 @@ import { product } from "./product";
 import { user } from "./user";
 
 export const endpoint = {
-  baseUrl: "http://localhost:3333/api",
+  baseUrl: "https://imob-server-production.up.railway.app",
   ...auth,
   ...user,
   ...order,

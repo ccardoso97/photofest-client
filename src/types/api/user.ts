@@ -1,5 +1,5 @@
 export interface User {
-    nickname: string;
+    userName: string;
     name: string;
     password: string;
     passwordConfirm: string;
@@ -13,7 +13,7 @@ export interface User {
   
   export interface UserResponse {
     id: string;
-    nickname: string;
+    userName: string;
     name: string;
     password: string;
     image: string;

@@ -6,16 +6,16 @@ import { HTMLAttributes, useState } from "react";
 type BoxLoginType = HTMLAttributes<HTMLDivElement>;
 
 export type BoxLoginProps = {
-  onSubmitData: (data: { nickname: string; password: string }) => void;
+  onSubmitData: (data: { userName: string; password: string }) => void;
   errorMessage: string;
 } & BoxLoginType;
 
 const BoxLogin = ({ onSubmitData, errorMessage }: BoxLoginProps) => {
-  const [nickname, setNickname] = useState("");
+  const [userName, setNickname] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (): void => {
-    const data = { nickname, password };
+    const data = { userName, password };
     onSubmitData(data);
   };
   return (
@@ -28,7 +28,7 @@ const BoxLogin = ({ onSubmitData, errorMessage }: BoxLoginProps) => {
         <input
           type="text"
           placeholder="Nickname"
-          value={nickname}
+          value={userName}
           onChange={({ target }) => setNickname(target.value)}
         />
 

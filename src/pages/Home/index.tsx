@@ -17,6 +17,7 @@ import { useQuery } from "@tanstack/react-query";
 import { QueryKey } from "types/QueryKey";
 import { ProductService } from "services/ProductService";
 
+
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
     ...DateTime.DATE_SHORT,
@@ -99,9 +100,9 @@ const Home = () => {
       <aside>
         <OrderDetails orders={order} onRemoveItem={handleRemoveOrderItem} />
       </aside>
-  <Overlay>
+  {/* <Overlay>
           <CheckoutSection/>
-            </Overlay>
+            </Overlay> */}
     </S.Home>
   );
 };
