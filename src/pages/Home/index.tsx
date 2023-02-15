@@ -10,10 +10,12 @@ import OrderDetails from "components/OrderDetails";
 import Overlay from "components/Overlay";
 import CheckoutSection from "components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
-import { products } from "mocks/products";
 import { ProductResponse } from "types/Product";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { OrderItemType } from "types/OrderItemType";
+import { useQuery } from "@tanstack/react-query";
+import { QueryKey } from "types/QueryKey";
+import { ProductService } from "services/ProductService";
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
@@ -21,6 +23,13 @@ const Home = () => {
     weekday: "short",
   });
   const navigate = useNavigate();
+
+  const { data: productsData } = useQuery(
+    [QueryKey.PRODUCTS],
+    ProductService.getLista
+  );
+
+  const [products, setProducts] = useState<ProductResponse[]>([]);
 
   const [order, setOrders] = useState<OrderItemType[]>([]);
 
@@ -41,6 +50,10 @@ const Home = () => {
     const filtered = order.filter((i) => i.product.id != id);
     setOrders(filtered);
   };
+  useEffect(() => {
+    setProducts(productsData || []);
+  }, [productsData]);
+
 
   return (
     <S.Home>
@@ -86,9 +99,9 @@ const Home = () => {
       <aside>
         <OrderDetails orders={order} onRemoveItem={handleRemoveOrderItem} />
       </aside>
-      {/* <Overlay>
-                <CheckoutSection />
-            </Overlay> */}
+  <Overlay>
+          <CheckoutSection/>
+            </Overlay>
     </S.Home>
   );
 };
