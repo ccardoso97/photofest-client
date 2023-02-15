@@ -5,7 +5,7 @@ export const OrderDetails = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 280px;
+    width: 400px;
     justify-self: end;
     background: ${theme.colors.baseBg2};
     padding: 20px;

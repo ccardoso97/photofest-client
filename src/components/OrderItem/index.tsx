@@ -9,15 +9,34 @@ export type OrderItemProps = {
   product: ProductResponse;
   quantity: number;
   observation?: string;
+  onRemoveItem?: () => void;
 } & DivType;
 
 const OrderItem = ({
   product,
   quantity,
   observation = "",
+  onRemoveItem,
   ...props
 }: OrderItemProps) => {
   const [quantityState, setQuantityState] = useState(quantity);
+  const [observationState, setObservationState] = useState(observation);
+
+  const handleObservation = (data: string) => {
+    setObservationState(data);
+  };
+
+  const handleQuantity = (data: number) => {
+    setQuantityState(data);
+  };
+
+  useEffect(() => {
+    handleObservation(observation);
+  }, [observation]);
+
+  useEffect(() => {
+    handleQuantity(quantity);
+  }, [quantity]);
 
   return (
     <S.OrderItem {...props} role="listitem">
@@ -45,13 +64,17 @@ const OrderItem = ({
         <S.OrderItemLeftObservation
           type="text"
           placeholder="Observações do pedido"
+          value={observationState}
+          onChange={({ target }) => {
+            setObservationState(target.value);
+          }}
         />
       </S.OrderItemLeft>
       <S.OrderItemRight>
         <S.OrderItemRightTotalPrice>
           R$ {Number(product.price * quantityState).toFixed(2)}
         </S.OrderItemRightTotalPrice>
-        <S.OrderItemRightTrash>
+        <S.OrderItemRightTrash onClick={onRemoveItem}>
           <Trash />
         </S.OrderItemRightTrash>
       </S.OrderItemRight>

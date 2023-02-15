@@ -11,17 +11,36 @@ import Overlay from "components/Overlay";
 import CheckoutSection from "components/CheckoutSection";
 import { useNavigate } from "react-router-dom";
 import { products } from "mocks/products";
-import { orders } from "mocks/order";
 import { ProductResponse } from "types/Product";
+import { useState } from "react";
+import { OrderItemType } from "types/OrderItemType";
 
 const Home = () => {
   const dateDescription = DateTime.now().toLocaleString({
     ...DateTime.DATE_SHORT,
-    weekday: "long",
+    weekday: "short",
   });
   const navigate = useNavigate();
+
+  const [order, setOrders] = useState<OrderItemType[]>([]);
+
   const handleNavigation = (path: RoutePath) => navigate(path);
-  const handleSelection = (product: ProductResponse) => {};
+
+  const handleSelection = (product: ProductResponse) => {
+    const existing = order.find((i) => i.product.id === product.id);
+    const quantity = existing ? existing.quantity + 1 : 1;
+    const item: OrderItemType = { product, quantity };
+
+    const list = existing
+      ? order.map((i) => (i.product.id === existing.product.id ? item : i))
+      : [...order, item];
+    setOrders(list);
+  };
+
+  const handleRemoveOrderItem = (id: string) => {
+    const filtered = order.filter((i) => i.product.id != id);
+    setOrders(filtered);
+  };
 
   return (
     <S.Home>
@@ -35,20 +54,20 @@ const Home = () => {
         <header>
           <S.HomeHeaderDetails>
             <div>
-              <S.HomeHeaderDetailsLogo>Pizza Fresh</S.HomeHeaderDetailsLogo>
+              <S.HomeHeaderDetailsLogo>Photofest</S.HomeHeaderDetailsLogo>
               <S.HomeHeaderDetailsDate>
                 {dateDescription}
               </S.HomeHeaderDetailsDate>
             </div>
             <S.HomeHeaderDetailsSearch>
               <Search />
-              <input type="text" placeholder="Procure pelo sabor" />
+              <input type="text" placeholder="Procure pelo nome" />
             </S.HomeHeaderDetailsSearch>
           </S.HomeHeaderDetails>
         </header>
         <div>
           <S.HomeProductTitle>
-            <b>Pizzas</b>
+            <b>Equipamentos</b>
           </S.HomeProductTitle>
           <S.HomeProductList>
             <ProductItemList>
@@ -65,7 +84,7 @@ const Home = () => {
         </div>
       </S.HomeContent>
       <aside>
-        <OrderDetails orders={orders} />
+        <OrderDetails orders={order} onRemoveItem={handleRemoveOrderItem} />
       </aside>
       {/* <Overlay>
                 <CheckoutSection />

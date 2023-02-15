@@ -10,9 +10,10 @@ type OrderDetailsType = HTMLAttributes<HTMLDivElement>;
 
 type OrderDetailsProps = {
   orders: OrderItemType[];
+  onRemoveItem: (id: string) => void;
 } & OrderDetailsType;
 
-const OrderDetails = ({ orders }: OrderDetailsProps) => {
+const OrderDetails = ({ orders, onRemoveItem }: OrderDetailsProps) => {
   const price = orders
     .map((i) => i.product.price * i.quantity)
     .reduce((a, b) => a + b, 0);
@@ -43,6 +44,7 @@ const OrderDetails = ({ orders }: OrderDetailsProps) => {
             Boolean(orders.length) ? (
               orders.map((item, index) => (
                 <OrderItem
+                  onRemoveItem={() => onRemoveItem(item.product.id)}
                   product={item.product}
                   quantity={item.quantity}
                   observation={item.observation}
